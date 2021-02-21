@@ -1,3 +1,7 @@
+#Github Link: https://github.com/xTrimy/SMTP-networks-project
+#Python Version 3.9.2
+#Mohamed Ashraf
+#2018/12470
 from socket import *
 from base64 import *
 import ssl
@@ -33,8 +37,7 @@ recv1 = clientSocket.recv(1024).decode()
 print(recv1)
 if recv1[:3] != '250':
     print('250 reply not received from server.')
-# Account Authentication
-# Fill in start
+# TLS
 TLS = 1
 if(TLS):
     strtlscmd = "STARTTLS\r\n".encode()
@@ -42,7 +45,7 @@ if(TLS):
     recv2 = clientSocket.recv(1024)
     sslClientSocket = ssl.wrap_socket(clientSocket)
     clientSocket = sslClientSocket
-
+# Auth
 AUTH = 1
 if(AUTH):
     EMAIL_ADDRESS = b64encode(YOUR_EMAIL.encode())
@@ -61,7 +64,6 @@ if(AUTH):
     sslClientSocket.send(EMAIL_PASSWORD + "\r\n".encode())
     recv4 = sslClientSocket.recv(1024)
     print(recv4)
-# Fill in end  
 
 # Send MAIL FROM command and print server response.
 # //Fill in start
